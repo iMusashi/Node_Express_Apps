@@ -1,0 +1,10 @@
+<h1>Friends List can be found below:</h1>
+
+<% friendsList.forEach(function(friend){ %>
+    <li><%= friend %> is my friend!</li>
+<% }); %>
+
+<form action="/createFriend" method="POST">
+    <input type="text" placeholder="name" name="friendName"></input>
+    <button type="Submit">Add Friend</button>
+</form>
