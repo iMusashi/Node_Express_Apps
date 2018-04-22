@@ -1,11 +1,17 @@
 <% include partials/header%>
-<h1>Index Page!!!</h1>
-<% blogs.forEach(function(blog){ %>
-    <div>
-        <h3><%= blog.title%></h3>
-        <img src="<%=blog.image%>"></img>
-        <p><%=blog.body%></p>
-        <span><%=blog.created%></span>
+<h1>My Fleet</h1>
+    <div class="ui two column grid ">
+        <% blogs.forEach(function(blog){ %>
+            <div class="column">
+                <div class="ui fluid card">
+                  <div class="image">
+                    <img src="<%=blog.image%>">
+                  </div>
+                  <div class="content">
+                    <a  href="/blogs/<%=blog._id%>" class="header"><%= blog.title%> <i class="right chevron icon"></i></a>
+                  </div>
+                </div>
+            </div>
+        <% }); %>
     </div>
-<% }); %>
 <% include partials/footer%>
