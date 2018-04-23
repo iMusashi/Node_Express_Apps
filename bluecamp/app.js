@@ -2,33 +2,14 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var Campground = require("./models/campground");
+var SeedDB = require("./seeds");
+
+SeedDB();
 
 mongoose.connect("mongodb://localhost/blue_camp");
 app.use(bodyParser.urlencoded({extended:true})); 
 app.set("view engine", "ejs");
-
-var campgroundSchema = new mongoose.Schema({
-    name: String,
-    image: String,
-    description: String
-});
-
-var Campground = mongoose.model("Campground",campgroundSchema);
-
-// Campground.create( 
-//     {
-//         name: "Giraween",
-//         image: "https://farm2.staticflickr.com/1281/4684194306_18ebcdb01c.jpg",
-//         description: "This is 'The Giraween'"
-//     }, function(err, campground){
-//       if(err){
-//           console.log(err);
-//       } else{
-//           console.log("Successfully created Campground");
-//           console.log(campground);
-//       }
-//     });
-
 
 app.get("/", function(req, res){
    res.render("landing"); 
@@ -64,7 +45,7 @@ app.get("/campgrounds/new",function(req, res){
 
 app.get("/campgrounds/:id",function(req, res){
      var campId = req.params.id;
-     Campground.findById(campId, function(err,foundCampground){
+     Campground.findById(campId).populate("comments").exec(function(err,foundCampground){
          if(err){
              console.log(err);
          }else{
