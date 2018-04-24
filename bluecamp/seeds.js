@@ -35,6 +35,7 @@ function seedDB(){
                      Comment.create(
                          {
                             text: "This place has no Internet! :(",
+                            author: "Keshav"
                          }, function(err, comment){
                             if(err){
                                 console.log(err);
@@ -43,7 +44,7 @@ function seedDB(){
                                 campground.save();
                             }
                          });
-                }
+                } 
             });
         });
   });  
