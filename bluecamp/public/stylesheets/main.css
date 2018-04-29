@@ -14,3 +14,20 @@
 .col-md-12{
     padding-left:0;
 }
+
+.centerForm{
+    width: 30%;
+    margin: 30px auto;
+}
+
+h1{
+    text-align:center;
+}
+
+.inline{
+    display:inline;
+}
+
+.ofhidden{
+    overflow: hidden;
+}
